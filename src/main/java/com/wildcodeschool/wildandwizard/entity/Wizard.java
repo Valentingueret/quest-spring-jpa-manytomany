@@ -5,7 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Date;
-
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 @Entity
 public class Wizard {
 
@@ -18,6 +22,10 @@ public class Wizard {
     private String birthPlace;
     private String biography;
     private boolean muggle;
+
+    @ManyToMany
+    @JoinTable(name = "wizard_course", joinColumns = @JoinColumn(name = "wizard_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<Course> courses = new ArrayList<>();
 
     public Wizard() {
     }
